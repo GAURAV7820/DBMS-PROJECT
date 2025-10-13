@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniVerse: Unified College Event Portal</title>
+  <style>
+
+    body,html {
+     margin: 0;
+     padding: 0;
+     height: 100%;
+     overflow: hidden;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+      color: whitesmoke;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      background-color: rgba(0,0,0,0.2);
+    }
+    .content img {
+    width: 400px;      
+    height: 80px;     
+    display: block;    
+    margin: 0 auto 20px; 
+}
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1; 
+    }
+    .tab{ 
+      margin-top:450px; 
+      text-align: center;
+    }
+    .tab button{ 
+     padding:10px 20px; 
+     cursor:pointer; 
+     width:45%;
+     border-radius:80px;
+     background: rgba(0, 0, 0, 0.4); 
+     color: aqua; 
+     border:2px solid royalblue;
+     cursor:pointer; 
+     transition: 0.7s;
+    }
+    #homebttn{
+      margin-left: 20;
+      margin-right: 70px;}
+   #about  {
+   background: none;         
+   border: none;                     
+   color: whitesmoke;
+   cursor: pointer;         
+   font-size: 16px;         
+   font-family: inherit;  
+}
+#gallery {
+   background: none;         
+   border: none;                      
+   color: whitesmoke;
+   cursor: pointer;         
+   font-size: 16px;         
+   font-family: inherit;
+}
+
+  </style>
+</head>
+<body>
+  
+  <div class="content">
+    <img src="https://dl.geu.ac.in/uploads/image/KWqx6liP-geu-logo.webp" alt="no-net">
+    <h1>UniVerse: Unified College Event Portal
+    </h1>
+    <h2>Welcome to GEU Event's 2025</h2>
+    <p>Join Events learn new skills with us </p>
+    <button id="about" onclick="window.location.href='https://geu.ac.in/about-us/'">About us</button>
+    <button id="gallery" onclick="window.location.href='https://geu.ac.in/gallery/grafest-day-3/'">Gallery</button>
+  </div>
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="https://dl.geu.ac.in/uploads/video/geu-homepage-video.mp4" type="video/mp4">
+  </video>
+
+  
+<div class="tab">
+    <button id="homebttn" onclick="window.location.href='student_dashboard.php'">Home (Student)</button>
+    <button onclick="window.location.href='faculty_dashboard.php'">Add New Event (only for faculty)</button>
+</div>
+</body>
+</html> 
