@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Feedback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #007bff, #00c6ff);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      width: 400px;
+      max-width: 90%;
+    }
+    h1 {
+      text-align: center;
+      color: #007bff;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .message {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Event Feedback</h1>
+    <form id="feedbackForm">
+      <label>Student ID:</label>
+      <input type="number" name="student_id" required readonly>
+
+      <label>Event ID:</label>
+      <input type="number" name="event_id" required readonly>
+
+      <label>Rating (1–5):</label>
+      <select name="rating" required>
+        <option value="">-- Select Rating --</option>
+        <option value="1">1 - Poor</option>
+        <option value="2">2 - Fair</option>
+        <option value="3">3 - Good</option>
+        <option value="4">4 - Very Good</option>
+        <option value="5">5 - Excellent</option>
+      </select>
+
+      <label>Comments:</label>
+      <textarea name="comments" rows="3" placeholder="Write your feedback..."></textarea>
+
+      <button type="submit">Submit Feedback</button>
+      <div class="message" id="message"></div>
+    </form>
+  </div>
+
+  <script>
+    // ✅ Auto-fill student_id and event_id from URL
+    const params = new URLSearchParams(window.location.search);
+    const studentInput = document.querySelector('input[name="student_id"]');
+    const eventInput = document.querySelector('input[name="event_id"]');
+
+    if (params.has("student_id")) {
+      studentInput.value = params.get("student_id");
+    }
+    if (params.has("event_id")) {
+      eventInput.value = params.get("event_id");
+    }
+
+    // ✅ Handle form submission
+    const form = document.getElementById('feedbackForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const messageBox = document.getElementById('message');
+      messageBox.innerText = "Submitting feedback...";
+
+      const formData = {
+        student_id: form.student_id.value,
+        event_id: form.event_id.value,
+        rating: form.rating.value,
+        comments: form.comments.value
+      };
+
+      try {
+        const response = await fetch('http://localhost:3000/feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.text();
+        if (response.ok) {
+          messageBox.style.color = "green";
+          messageBox.innerText = result + " ✅";
+          form.reset();
+        } else {
+          messageBox.style.color = "red";
+          messageBox.innerText = "❌ " + result;
+        }
+      } catch (error) {
+        messageBox.style.color = "red";
+        messageBox.innerText = " Error connecting to server.";
+      }
+    });
+  </script>
+</body>
+</html>
