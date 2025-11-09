@@ -12,7 +12,6 @@ if (isset($_POST['check_password'])) {
         $passworderror = "Incorrect password!";
     }
 }
-
 $passwordcorrect = isset($_SESSION['club_logged_in']) && $_SESSION['club_logged_in'] === true;
 $venues = $conn->query("SELECT * FROM venues");
 $clubs = $conn->query("SELECT * FROM clubs");
@@ -97,7 +96,8 @@ if ($passwordcorrect && isset($_POST['event_name'])) {
             box-sizing: border-box;
             margin-bottom: 30px;
         }
-        h1, h2 { text-align: center; }
+        h1, h2 { text-align: center;
+        color:  #58e910ff; }
         input, select, button, textarea {
             width: 100%;
             padding: 10px;
@@ -109,16 +109,19 @@ if ($passwordcorrect && isset($_POST['event_name'])) {
         }
         textarea { resize: vertical; min-height: 80px; }
         button {
-            background-color: #4CAF50;
+            background-color: #3d9a40ff;
             color: white;
             cursor: pointer;
             font-weight: bold;
             transition: background 0.3s;
         }
-        button:hover { background-color: #45a049; }
+        button:hover { background-color:  #3fa20eff; }
         label { font-weight: bold; margin-top: 10px; display: block; }
-        a { display: block; text-align: center; margin-bottom: 20px; color: #000; text-decoration: none; font-weight: bold; }
+        a { display: block; text-align: center; margin-bottom: 20px; color:  #58e910ff; text-decoration: none; font-weight: bold; }
         a:hover { color: #4CAF50; }
+        p{
+            color: #58e910ff;
+        }
         p.error { color: red; font-weight: bold; }
         p.success { color: green; font-weight: bold; text-align: center; }
     </style>
@@ -127,6 +130,13 @@ if ($passwordcorrect && isset($_POST['event_name'])) {
 <div class="container">
     <h1>Club Dashboard</h1>
     <a href="student_dashboard.php">Switch to Student Dashboard</a>
+    <div class="section" style="text-align:center;">
+  <h2> Event Reports</h2>
+  <p>Check analytics and feedback summaries of past events.</p>
+  <button onclick="window.location.href='faculty_event_report.php'">
+     View Past Event Summary
+  </button>
+</div>
 
     <?php if (!$passwordcorrect): ?>
         <form method="post" class="dashboard-form">
