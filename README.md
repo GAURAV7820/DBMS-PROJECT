@@ -53,7 +53,7 @@ Git & GitHub
 
 
 Features
-👨‍🎓 Student Module
+ Student Module
 
 Student login
 
@@ -63,7 +63,7 @@ View events
 
 Logout
 
-👨‍🏫 Faculty Module
+ Faculty Module
 
 Faculty login
 
@@ -71,7 +71,7 @@ Generate event reports
 
 View student participation
 
-📝 Feedback System (Node.js API)
+ Feedback System (Node.js API)
 
 Students can submit feedback
 
@@ -79,7 +79,7 @@ Stored securely in MySQL
 
 REST API (Express.js)
 
-🗄️ Database Management
+ Database Management
 
 Normalized tables
 
