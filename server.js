@@ -6,6 +6,8 @@ const nodemailer = require("nodemailer");
 const cron = require("node-cron");
 const app = express();
 app.use(express.static(__dirname));
+
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -104,7 +106,7 @@ function sendReminderEmails(daysBefore = 1, callback) {
     if (callback) callback(null, sentCount);
   });
 }
-cron.schedule("07 09 * * *", () => {
+cron.schedule("25 23 * * *", () => {
   sendReminderEmails();
 });
 app.get("/send-reminders-now", (req, res) => {
@@ -117,3 +119,6 @@ app.get("/send-reminders-now", (req, res) => {
   });
 });
 const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});

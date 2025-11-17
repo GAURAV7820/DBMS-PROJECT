@@ -87,7 +87,6 @@
   </div>
 
   <script>
-    // ✅ Auto-fill student_id and event_id from URL
     const params = new URLSearchParams(window.location.search);
     const studentInput = document.querySelector('input[name="student_id"]');
     const eventInput = document.querySelector('input[name="event_id"]');
@@ -98,8 +97,6 @@
     if (params.has("event_id")) {
       eventInput.value = params.get("event_id");
     }
-
-    // ✅ Handle form submission
     const form = document.getElementById('feedbackForm');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -123,11 +120,11 @@
         const result = await response.text();
         if (response.ok) {
           messageBox.style.color = "green";
-          messageBox.innerText = result + " ✅";
+          messageBox.innerText = result ;
           form.reset();
         } else {
           messageBox.style.color = "red";
-          messageBox.innerText = "❌ " + result;
+          messageBox.innerText =  result;
         }
       } catch (error) {
         messageBox.style.color = "red";
