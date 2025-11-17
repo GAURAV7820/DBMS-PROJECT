@@ -86,3 +86,15 @@ Normalized tables
 ER diagram included
 
 SQL scripts for easy setup
+
+
+
+
+
+
+
+Author
+
+Gaurav Singh
+B.Tech CSE
+2025
